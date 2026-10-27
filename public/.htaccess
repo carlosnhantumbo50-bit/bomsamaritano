@@ -1,0 +1,46 @@
+# BOM Samaritano - Configuração Otimizada para cPanel / Apache
+# Suporta alojamento na raiz (public_html) ou em subpastas/domínios adicionais
+
+# 1. Configuração de tipos MIME para JavaScript e CSS modernos
+<IfModule mod_mime.c>
+  AddType application/javascript js mjs
+  AddType text/css css
+  AddType image/svg+xml svg svgz
+  AddType application/json json
+  AddType image/webp webp
+  AddDefaultCharset UTF-8
+</IfModule>
+
+# 2. Segurança - Evitar listagem de ficheiros no navegador
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# 3. Roteamento SPA (Single Page Application)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.html [L]
+</IfModule>
+
+# 4. Habilitar compressão GZIP / Deflate para carregamento ultra rápido
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>
+
+# 5. Cache de ficheiros estáticos (Assets, Imagens, Fontes)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+</IfModule>

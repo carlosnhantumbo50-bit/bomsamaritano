@@ -1,0 +1,6 @@
+{
+  "name": "BOM Samaritano — Agência de Viagens e Turismo",
+  "description": "Website oficial da BOM Samaritano em Maputo, Moçambique. Passagens aéreas, vistos e documentação, pacotes turísticos, hotéis, aluguer de viaturas e consultoria de viagens.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
