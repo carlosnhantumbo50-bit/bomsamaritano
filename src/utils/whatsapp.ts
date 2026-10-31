@@ -1,9 +1,9 @@
 import { StoredQuote } from '../types';
 
-export const AGENCY_PHONE_CALLS = '865606060';
-export const AGENCY_PHONE_CALLS_DISPLAY = '+258 865 606 060';
-export const AGENCY_WHATSAPP = '258852808080';
-export const AGENCY_WHATSAPP_DISPLAY = '+258 852 808 080';
+export const AGENCY_PHONE_CALLS = '852808080';
+export const AGENCY_PHONE_CALLS_DISPLAY = '+258 852 808 080';
+export const AGENCY_WHATSAPP = '258865606060';
+export const AGENCY_WHATSAPP_DISPLAY = '+258 865 606 060';
 export const AGENCY_EMAIL = 'bomsamaritanoavt@outlook.com';
 export const AGENCY_ADDRESS = 'Av. Eduardo Mondlane, Paragem Belita, Maputo — Moçambique';
 export const AGENCY_INSTAGRAM = '@bom_samaritano.viagens';

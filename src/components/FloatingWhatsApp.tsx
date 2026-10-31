@@ -47,7 +47,7 @@ export const FloatingWhatsApp: React.FC = () => {
         onClick={handleClick}
         className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-300 cursor-pointer"
         aria-label="Falar no WhatsApp com a BOM Samaritano"
-        title="Falar no WhatsApp (258 852 808 080)"
+        title="Falar no WhatsApp (+258 865 606 060)"
       >
         <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-pulse group-hover:opacity-50" />
         <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-white text-transparent relative z-10" />

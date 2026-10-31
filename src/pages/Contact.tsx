@@ -125,8 +125,23 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 Resposta rápida para cotações, dúvidas sobre voos, vistos e reservas.
               </p>
-              <div className="text-lg font-extrabold text-[#11164D] mt-3 font-mono">
-                {COMPANY_DETAILS.phone}
+              <div className="space-y-2 mt-4 text-xs">
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/60 text-emerald-900">
+                  <span className="font-semibold flex items-center gap-1.5">
+                    <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                    WhatsApp Oficial:
+                  </span>
+                  <span className="font-mono font-bold text-sm text-[#25D366]">+258 {COMPANY_DETAILS.whatsApp}</span>
+                </div>
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-800">
+                  <span className="font-semibold flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-[#F58220]" />
+                    Chamada Telefónica:
+                  </span>
+                  <a href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`} className="font-mono font-bold text-sm text-[#11164D] hover:text-[#F58220] transition-colors">
+                    +258 {COMPANY_DETAILS.phoneCalls}
+                  </a>
+                </div>
               </div>
             </div>
 
