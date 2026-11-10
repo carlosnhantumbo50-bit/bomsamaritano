@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Phone,
+  PhoneCall,
   MessageCircle,
   MapPin,
   Menu,
@@ -94,25 +95,43 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 ml-auto">
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            {/* Phone Call (Voz / Linha Directa) */}
             <a
               id="header-call-link"
               href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
-              className="flex items-center gap-1 font-medium hover:text-[#F58220] transition-colors"
-              title="Ligar para a BOM Samaritano"
+              className="group flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 hover:bg-sky-500/20 border border-white/15 hover:border-sky-400/50 text-slate-100 hover:text-sky-200 transition-all text-xs"
+              title="Ligar agora para linha directa de voz (+258 85 280 8080)"
             >
-              <Phone className="w-3.5 h-3.5 text-[#F58220]" />
-              <span>{COMPANY_DETAILS.phoneCalls}</span>
+              <div className="w-5 h-5 rounded-full bg-sky-500/30 group-hover:bg-sky-400 text-sky-200 group-hover:text-slate-900 flex items-center justify-center transition-colors">
+                <PhoneCall className="w-3 h-3 stroke-[2.5]" />
+              </div>
+              <span className="hidden xl:inline text-[10px] font-bold uppercase tracking-wider text-sky-300">
+                Chamada:
+              </span>
+              <span className="font-semibold text-white group-hover:text-sky-100">
+                {COMPANY_DETAILS.phoneCallsFormatted}
+              </span>
             </a>
-            <span className="text-white/30 hidden sm:inline">|</span>
+
+            {/* WhatsApp (Chat Directo com Badge Online) */}
             <button
               id="header-whatsapp-top-btn"
               onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de obter informações sobre os vossos serviços.')}
-              className="flex items-center gap-1 font-semibold text-[#25D366] hover:text-white transition-colors"
-              title="Falar no WhatsApp"
+              className="group flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#25D366]/20 hover:bg-[#25D366] border border-[#25D366]/50 hover:border-[#25D366] text-white transition-all text-xs cursor-pointer shadow-sm"
+              title="Conversar no WhatsApp oficial (+258 86 560 6060)"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp: {COMPANY_DETAILS.whatsApp}</span>
+              <div className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xs">
+                <MessageCircle className="w-3 h-3 fill-white text-transparent" />
+              </div>
+              <span className="font-bold flex items-center gap-1">
+                <span className="hidden lg:inline text-emerald-300 group-hover:text-white">WhatsApp:</span>
+                <span>{COMPANY_DETAILS.whatsAppFormatted}</span>
+              </span>
+              <span className="inline-flex items-center gap-1 text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-[#25D366] group-hover:bg-white text-slate-950 group-hover:text-[#25D366] tracking-wider transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-950 group-hover:bg-[#25D366] animate-pulse" />
+                Online
+              </span>
             </button>
           </div>
         </div>
@@ -376,19 +395,40 @@ export const Header: React.FC<HeaderProps> = ({
                   setMobileMenuOpen(false);
                   openWhatsApp('Olá BOM Samaritano! Gostaria de falar com um consultor de viagens.');
                 }}
-                className="w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-center font-bold text-base shadow-md flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm shadow-md flex items-center justify-between transition-all cursor-pointer"
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Conversar no WhatsApp</span>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <MessageCircle className="w-4 h-4 fill-white text-transparent" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-[10px] uppercase tracking-wider text-emerald-100 font-extrabold">WhatsApp Directo</div>
+                    <div className="font-extrabold text-white">{COMPANY_DETAILS.whatsAppFormatted}</div>
+                  </div>
+                </div>
+                <span className="text-[10px] bg-white text-emerald-800 font-extrabold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Online
+                </span>
               </button>
 
               <a
                 id="mobile-drawer-phone-btn"
                 href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
-                className="w-full py-2.5 rounded-xl border border-slate-200 text-slate-700 text-center font-semibold text-sm flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-[#11164D] text-white font-bold text-sm shadow-sm flex items-center justify-between border border-slate-700 transition-all"
               >
-                <Phone className="w-4 h-4 text-[#11164D]" />
-                <span>Ligar: {COMPANY_DETAILS.phoneCalls}</span>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center">
+                    <PhoneCall className="w-4 h-4 stroke-[2.5]" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-[10px] uppercase tracking-wider text-sky-300 font-extrabold">Chamada Telefónica (Voz)</div>
+                    <div className="font-extrabold text-white">{COMPANY_DETAILS.phoneCallsFormatted}</div>
+                  </div>
+                </div>
+                <span className="text-[10px] bg-sky-500/20 text-sky-300 font-bold px-2 py-0.5 rounded-full">
+                  Ligar
+                </span>
               </a>
             </div>
           </div>

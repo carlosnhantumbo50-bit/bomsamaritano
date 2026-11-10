@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { FlightOffer, FlightSearchParams, PassengerInfo, FlightBookingResult, TravelProviderStatus } from '../types';
 import { openWhatsApp, saveQuoteLocally } from '../utils/whatsapp';
+import { COMPANY_DETAILS } from '../data/travelData';
 
 export const POPULAR_AIRPORTS = [
   { code: 'MPM', city: 'Maputo', country: 'Moçambique', name: 'Aeroporto Internacional de Mavalane' },
@@ -1019,8 +1020,8 @@ export const FlightBookingEngine: React.FC = () => {
                       onClick={handleSendBookingToWhatsApp}
                       className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
                     >
-                      <MessageCircle className="w-4 h-4" />
-                      <span>Validar no WhatsApp Oficial (+258 852 808 080)</span>
+                      <MessageCircle className="w-4 h-4 fill-white text-transparent" />
+                      <span>Validar no WhatsApp Oficial ({COMPANY_DETAILS.whatsAppFormatted})</span>
                     </button>
 
                     <button

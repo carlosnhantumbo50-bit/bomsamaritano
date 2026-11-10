@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Compass,
   Phone,
+  PhoneCall,
   MessageCircle,
   Mail,
   MapPin,
@@ -10,6 +11,7 @@ import {
   Globe,
   Clock,
   ArrowRight,
+  ExternalLink,
   ShieldAlert,
 } from 'lucide-react';
 import { PageRoute } from '../types';
@@ -81,11 +83,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal }) 
               <button
                 id="footer-whatsapp-btn-social"
                 onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de falar com a agência.')}
-                className="w-10 h-10 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366] text-[#25D366] hover:text-white flex items-center justify-center transition-all hover:scale-105"
-                title="WhatsApp Directo"
+                className="w-10 h-10 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366] text-[#25D366] hover:text-white flex items-center justify-center transition-all hover:scale-105 cursor-pointer shadow-xs"
+                title={`WhatsApp Oficial: ${COMPANY_DETAILS.whatsAppFormatted} (Online)`}
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5 fill-current" />
               </button>
+
+              <a
+                id="footer-phone-btn-social"
+                href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
+                className="w-10 h-10 rounded-xl bg-sky-500/20 hover:bg-sky-500 text-sky-300 hover:text-white flex items-center justify-center transition-all hover:scale-105"
+                title={`Ligar Linha Directa de Voz: ${COMPANY_DETAILS.phoneCallsFormatted}`}
+              >
+                <PhoneCall className="w-4 h-4 stroke-[2.5]" />
+              </a>
 
               <div className="flex items-center gap-1.5 text-xs text-slate-400 pl-2">
                 <Globe className="w-4 h-4 text-slate-500" />
@@ -241,31 +252,48 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal }) 
                 </span>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#F58220] shrink-0" />
-                <div>
-                  <div className="text-[11px] text-slate-400">Chamadas:</div>
-                  <a
-                    href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
-                    className="hover:text-white font-semibold"
-                  >
-                    {COMPANY_DETAILS.phoneCalls}
-                  </a>
+              {/* Linha Telefónica de Voz */}
+              <a
+                href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
+                className="group p-2.5 rounded-xl bg-white/5 hover:bg-sky-500/10 border border-white/10 hover:border-sky-400/40 transition-all flex items-center gap-3"
+                title="Ligar para a BOM Samaritano (+258 85 280 8080)"
+              >
+                <div className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <PhoneCall className="w-4 h-4 stroke-[2.5]" />
                 </div>
-              </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between text-[10px] uppercase font-bold text-sky-300">
+                    <span>Chamadas de Voz</span>
+                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-sky-500/20 text-sky-200">Ligar</span>
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-200 transition-colors truncate">
+                    {COMPANY_DETAILS.phoneCallsFormatted}
+                  </div>
+                </div>
+              </a>
 
-              <div className="flex items-center gap-2.5">
-                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
-                <div>
-                  <div className="text-[11px] text-slate-400">WhatsApp:</div>
-                  <button
-                    onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de obter informações.')}
-                    className="hover:text-white font-semibold text-[#25D366]"
-                  >
-                    {COMPANY_DETAILS.whatsApp}
-                  </button>
+              {/* Canal WhatsApp Oficial */}
+              <button
+                onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de obter informações.')}
+                className="group p-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 hover:border-[#25D366] transition-all flex items-center gap-3 text-left w-full cursor-pointer"
+                title="Conversar no WhatsApp (+258 86 560 6060)"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#25D366] text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-xs">
+                  <MessageCircle className="w-4 h-4 fill-white text-transparent" />
                 </div>
-              </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between text-[10px] uppercase font-bold text-emerald-300">
+                    <span>WhatsApp Oficial</span>
+                    <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-emerald-500/30 text-emerald-200 flex items-center gap-1 font-extrabold">
+                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+                      Online
+                    </span>
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-white group-hover:text-emerald-300 transition-colors truncate">
+                    {COMPANY_DETAILS.whatsAppFormatted}
+                  </div>
+                </div>
+              </button>
 
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#F58220] shrink-0" />
@@ -295,9 +323,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal }) 
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-center sm:text-right">
-            <span className="bg-white/10 px-3 py-1 rounded-full text-slate-300 font-medium">
-              {COMPANY_DETAILS.developerText}
-            </span>
+            <a
+              href={COMPANY_DETAILS.developerWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 hover:bg-white/20 border border-white/10 hover:border-orange-400/40 px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white font-medium transition-all inline-flex items-center gap-1.5 group cursor-pointer"
+              title="MediaLine Soluções Digitais - www.medialinesd.com"
+            >
+              <span>Desenvolvido por <strong className="text-white group-hover:text-[#F58220] transition-colors">{COMPANY_DETAILS.developer}</strong></span>
+              <span className="text-[10px] text-slate-400 group-hover:text-slate-200">({COMPANY_DETAILS.developerWebsiteDisplay})</span>
+              <ExternalLink className="w-3 h-3 text-[#F58220] group-hover:translate-x-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
   Sparkles,
   ShieldAlert,
   Phone,
+  PhoneCall,
   Check,
 } from 'lucide-react';
 import { PageRoute } from '../types';
@@ -719,18 +720,33 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuoteModal }) => {
               <button
                 id="cta-talk-bom-samaritano-btn"
                 onClick={() => openWhatsApp('Olá BOM Samaritano! Quero falar com a vossa equipa para começar a organizar a minha próxima viagem.')}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#F58220] hover:bg-[#E07316] text-white font-extrabold text-base shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3 cursor-pointer group"
               >
-                <MessageCircle className="w-5 h-5 text-white" />
-                <span>Falar com a BOM Samaritano</span>
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                  <MessageCircle className="w-5 h-5 fill-white text-transparent" />
+                </div>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-wider text-emerald-100 font-extrabold flex items-center gap-1.5">
+                    WhatsApp Oficial
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  </div>
+                  <div className="font-extrabold text-white">{COMPANY_DETAILS.whatsAppFormatted}</div>
+                </div>
               </button>
 
               <a
                 href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
-                className="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white/10 hover:bg-sky-500/20 border border-white/25 hover:border-sky-400/50 text-white font-semibold text-sm sm:text-base transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3"
               >
-                <Phone className="w-4 h-4 text-[#F58220]" />
-                <span>Ligar: {COMPANY_DETAILS.phoneCalls}</span>
+                <div className="w-8 h-8 rounded-full bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0">
+                  <PhoneCall className="w-4 h-4 stroke-[2.5]" />
+                </div>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-wider text-sky-200 font-bold">
+                    Linha Directa (Voz)
+                  </div>
+                  <div className="font-extrabold text-white">{COMPANY_DETAILS.phoneCallsFormatted}</div>
+                </div>
               </a>
             </div>
           </div>

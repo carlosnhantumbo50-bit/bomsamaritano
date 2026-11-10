@@ -11,6 +11,7 @@ import {
   Phone,
   MessageCircle,
   ArrowRight,
+  ExternalLink,
 } from 'lucide-react';
 import { PageRoute } from '../types';
 import { COMPANY_DETAILS } from '../data/travelData';
@@ -219,26 +220,39 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onNavigate, onOpenQuoteModal }
           </div>
         </div>
 
-        {/* Informações Institucionais & Parceria com CNM Multiservices */}
+        {/* Informações Institucionais & Parceria com MediaLine Soluções Digitais */}
         <div className="p-8 rounded-3xl bg-[#11164D] text-white flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-[#F58220]">
               Desenvolvimento e Tecnologia
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-bold text-white mt-1">
-              Plataforma Desenvolvida por CNM Multiservices
+              Plataforma Desenvolvida por {COMPANY_DETAILS.developer}
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">
-              Projectado especialmente para proporcionar a melhor experiência de navegação rápida, segura e com integração directa com os canais de atendimento em Maputo.
+              Projectado pela MediaLine Soluções Digitais especialmente para proporcionar a melhor experiência de navegação rápida, segura e com integração directa com os canais de atendimento da BOM Samaritano.
             </p>
           </div>
 
-          <button
-            onClick={() => onNavigate('contact')}
-            className="px-6 py-3 rounded-xl bg-white hover:bg-slate-100 text-[#11164D] font-bold text-sm shadow-md transition-all shrink-0"
-          >
-            Ver Detalhes de Contacto
-          </button>
+          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+            <a
+              href={COMPANY_DETAILS.developerWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 rounded-xl bg-[#F58220] hover:bg-[#E07316] text-white font-bold text-sm shadow-md transition-all inline-flex items-center gap-2 group cursor-pointer"
+              title="MediaLine Soluções Digitais - www.medialinesd.com"
+            >
+              <span>Visitar {COMPANY_DETAILS.developerWebsiteDisplay}</span>
+              <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+
+            <button
+              onClick={() => onNavigate('contact')}
+              className="px-5 py-3 rounded-xl bg-white hover:bg-slate-100 text-[#11164D] font-bold text-sm shadow-md transition-all shrink-0 cursor-pointer"
+            >
+              Ver Detalhes de Contacto
+            </button>
+          </div>
         </div>
       </div>
     </div>

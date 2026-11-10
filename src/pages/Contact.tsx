@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   MapPin,
   Phone,
+  PhoneCall,
   Mail,
   Clock,
   MessageCircle,
@@ -110,48 +111,90 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20">
         {/* Quick Contact Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {/* Card 1: WhatsApp / Telefone */}
+          {/* Card 1: WhatsApp Oficial & Chamada de Voz */}
           <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-[#25D366] flex items-center justify-center mb-4">
-                <MessageCircle className="w-6 h-6" />
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-[#25D366] flex items-center justify-center shadow-xs">
+                  <MessageCircle className="w-6 h-6 fill-current" />
+                </div>
+                <div className="w-11 h-11 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center shadow-xs">
+                  <PhoneCall className="w-5 h-5 stroke-[2.5]" />
+                </div>
               </div>
+
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Atendimento Directo
               </span>
               <h3 className="font-display text-lg font-bold text-[#11164D] mt-1">
-                WhatsApp & Telefone
+                WhatsApp & Chamadas Telefónicas
               </h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                Resposta rápida para cotações, dúvidas sobre voos, vistos e reservas.
+                Escolha o canal mais cómodo para falar em tempo real com os consultores da agência em Maputo:
               </p>
-              <div className="space-y-2 mt-4 text-xs">
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/60 text-emerald-900">
-                  <span className="font-semibold flex items-center gap-1.5">
-                    <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
-                    WhatsApp Oficial:
-                  </span>
-                  <span className="font-mono font-bold text-sm text-[#25D366]">+258 {COMPANY_DETAILS.whatsApp}</span>
+
+              <div className="space-y-2.5 mt-4 text-xs">
+                {/* Canal WhatsApp */}
+                <div className="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200/80">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-extrabold text-emerald-900 flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
+                      <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+                      WhatsApp Oficial
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#25D366] text-white">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                      Online
+                    </span>
+                  </div>
+                  <div className="font-mono font-extrabold text-base text-[#11164D]">
+                    {COMPANY_DETAILS.whatsAppFormatted}
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">
+                    Envio de cotações de voos, roteiros e esclarecimento de dúvidas
+                  </div>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-800">
-                  <span className="font-semibold flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#F58220]" />
-                    Chamada Telefónica:
-                  </span>
-                  <a href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`} className="font-mono font-bold text-sm text-[#11164D] hover:text-[#F58220] transition-colors">
-                    +258 {COMPANY_DETAILS.phoneCalls}
+
+                {/* Canal Telefónico de Voz */}
+                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-extrabold text-slate-800 flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
+                      <PhoneCall className="w-3.5 h-3.5 text-sky-600 stroke-[2.5]" />
+                      Linha de Voz Directa
+                    </span>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-sky-100 text-sky-700">
+                      Chamada
+                    </span>
+                  </div>
+                  <a
+                    href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
+                    className="font-mono font-extrabold text-base text-[#11164D] hover:text-[#F58220] transition-colors block"
+                  >
+                    {COMPANY_DETAILS.phoneCallsFormatted}
                   </a>
+                  <div className="text-[11px] text-slate-500 mt-0.5">
+                    Atendimento imediato por chamada em horário laboral
+                  </div>
                 </div>
               </div>
             </div>
 
-            <button
-              onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de falar com a vossa equipa.')}
-              className="mt-6 w-full py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Abrir Conversa no WhatsApp</span>
-            </button>
+            <div className="mt-6 flex flex-col gap-2">
+              <button
+                onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de falar com a vossa equipa.')}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow"
+              >
+                <MessageCircle className="w-4 h-4 fill-white text-transparent" />
+                <span>Conversar no WhatsApp ({COMPANY_DETAILS.whatsAppFormatted})</span>
+              </button>
+
+              <a
+                href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#11164D] hover:bg-[#1A216E] text-white text-xs font-bold transition-all flex items-center justify-center gap-2"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-sky-300 stroke-[2.5]" />
+                <span>Ligar Agora ({COMPANY_DETAILS.phoneCallsFormatted})</span>
+              </a>
+            </div>
           </div>
 
           {/* Card 2: Localização */}
@@ -404,16 +447,29 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
               <div className="space-y-3 text-xs text-slate-600">
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-[#F58220] shrink-0" />
-                  <span>{COMPANY_DETAILS.email}</span>
+                  <a href={`mailto:${COMPANY_DETAILS.email}`} className="hover:text-[#11164D] truncate">
+                    {COMPANY_DETAILS.email}
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#F58220] shrink-0" />
-                  <span>{COMPANY_DETAILS.phone}</span>
+                  <PhoneCall className="w-4 h-4 text-sky-600 shrink-0 stroke-[2.5]" />
+                  <a href={`tel:${COMPANY_DETAILS.phoneCallsRaw}`} className="hover:text-[#F58220] font-semibold">
+                    Chamadas: {COMPANY_DETAILS.phoneCallsFormatted}
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0 fill-current" />
+                  <button
+                    onClick={() => openWhatsApp('Olá BOM Samaritano! Gostaria de falar com um consultor.')}
+                    className="hover:text-emerald-700 font-semibold text-emerald-600 cursor-pointer text-left"
+                  >
+                    WhatsApp: {COMPANY_DETAILS.whatsAppFormatted}
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* CNM Multiservices Credits & Institutional Box */}
+            {/* MediaLine Soluções Digitais Credits & Institutional Box */}
             <div className="bg-[#11164D] text-white rounded-3xl p-6">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#F58220] block mb-1">
                 Garantia Institucional
@@ -424,8 +480,19 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
                 Todas as reservas, cotações e emissões são efectuadas com recibo e comprovativo oficial. Não autorizamos cobranças fora dos canais formais da empresa.
               </p>
-              <div className="pt-3 border-t border-white/10 text-[11px] text-slate-400">
-                Website corporativo desenvolvido pela <strong className="text-slate-200">CNM Multiservices</strong> para a BOM Samaritano.
+              <div className="pt-3 border-t border-white/10 text-[11px] text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                <span>Website desenvolvido por:</span>
+                <a
+                  href={COMPANY_DETAILS.developerWebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-[#F58220] font-bold transition-colors inline-flex items-center gap-1.5 group"
+                  title="MediaLine Soluções Digitais"
+                >
+                  <strong className="text-slate-100 group-hover:text-[#F58220] transition-colors">{COMPANY_DETAILS.developer}</strong>
+                  <span className="text-[10px] text-slate-400 group-hover:text-slate-200">({COMPANY_DETAILS.developerWebsiteDisplay})</span>
+                  <ExternalLink className="w-3 h-3 text-[#F58220] group-hover:translate-x-0.5 transition-transform" />
+                </a>
               </div>
             </div>
           </div>

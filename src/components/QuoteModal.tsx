@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
 import { openWhatsApp, saveQuoteLocally } from '../utils/whatsapp';
+import { COMPANY_DETAILS } from '../data/travelData';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -257,7 +258,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   <span>Enviar Pedido para o WhatsApp</span>
                 </button>
                 <p className="text-[11px] text-slate-400 text-center mt-2">
-                  Ao submeter, será direccionado para o WhatsApp oficial da BOM Samaritano (+258 852 808 080) com a mensagem formatada.
+                  Ao submeter, será direccionado para o WhatsApp oficial da BOM Samaritano ({COMPANY_DETAILS.whatsAppFormatted}) com a mensagem formatada.
                 </p>
               </div>
             </form>
